@@ -14,11 +14,12 @@ from flask import Flask, request, Response
 app = Flask(__name__)
 
 # Random username and password. Needs to be the same as inside the TIE server policy or MWG rule set.
-ATD_USER = 'username'
-ATD_PW = 'password'
+# Get these values from the environment variable with the same name
+ATD_USER = os.environ['ATD_USER']
+ATD_PW = os.environ['ATD_PASSWORD']
 
 # Log into DoD > Settings > Key Management > Create new Authorization Key
-DOD_API = ''
+DOD_API = os.environ['DOD_API']
 
 CREDS = base64.b64encode((ATD_USER + ":" + ATD_PW).encode())
 
