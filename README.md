@@ -11,7 +11,7 @@ This service can be used with every Trellix solution that natively integrates wi
 
 # Usage
 
-## Docker compose
+## Docker Compose
 
 ```
 ---
