@@ -9,7 +9,40 @@ This service provides the ability to integrate various Trellix solutions with Ma
 This service is written as a flask web application that simulates the ATD|TIS (Advanced Threat Detection | Trellix Intelligence Sandbox) APIs. 
 This service can be used with every Trellix solution that natively integrates with ATD|TIS.
 
-## Installation
+# Usage
+
+## Docker compose
+
+```
+---
+version: "2.1"
+services:
+  dod-integrator:
+    image: terratrax/skyhigh-trellix-dod-integrator:latest
+    container_name: dod-integrator
+    environment:
+      - ATD_USER='YOUR-ATD-USERNAME'
+      - ATD_PASSWORD='YOUR-ATD-PASSWORD'
+      - DOD_API='YOUR-API-KEY'
+    ports:
+      - 8080:8080
+    restart: unless-stopped
+```
+## Docker CLI
+
+```
+docker run -d \
+   --name dod-integrator \
+   -e ATD_USER='YOUR-ATD-USERNAME' \
+   -e ATD_PASSWORD='YOUR-ATD-PASSWORD' \
+   -e DOD_API='YOUR-API-KEY' \
+   -p 8080:8080 \
+   --restart unless-stopped \
+   terratrax/skyhigh-trellix-dod-integrator:latest
+
+
+```
+## Installation from source
 
 This is proof of concept code only. In production please make sure to not store username, password and API keys in clear text inside the script.
 
@@ -38,6 +71,8 @@ This is proof of concept code only. In production please make sure to not store 
    ```
    flask run --host 0.0.0.0 --port 8080
    ```
+
+
    
 ## Trellix TIE Configuration
 
